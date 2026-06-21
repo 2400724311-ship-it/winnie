@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKIN EDIT | Jinja's Skin Care, Hair & Perfume House</title>
+<style>
+:root{
+  --cream:#fbf3ee;
+  --blush:#f1d4c9;
+  --rose:#c9786a;
+  --rose-deep:#a8534a;
+  --gold:#caa257;
+  --gold-light:#e6c789;
+  --cocoa:#3d2b27;
+  --white:#fffaf7;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--cream);
+  color:var(--cocoa);
+  overflow-x:hidden;
+}
+h1,h2,h3,.brand{font-family:'Georgia',serif;letter-spacing:1px;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+@keyframes floaty{0%,100%{transform:translateY(-50%);}50%{transform:translateY(calc(-50% - 18px));}}
+@keyframes spinSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.reveal{opacity:0;animation:fadeUp .9s ease forwards;}
+.reveal.delay1{animation-delay:.15s;}
+.reveal.delay2{animation-delay:.3s;}
+.reveal.delay3{animation-delay:.45s;}
+
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease;}
+.fade-in.in-view{opacity:1;transform:translateY(0);}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6%;
+  background:rgba(251,243,238,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--blush);
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:bold;color:var(--rose-deep);}
+.logo-circle{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;border:2px solid var(--gold);
+}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.nav-links{display:flex;gap:28px;font-size:14px;text-transform:uppercase;letter-spacing:1.5px;}
+.nav-links a{position:relative;padding-bottom:4px;}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--rose-deep);transition:width .3s ease;}
+.nav-links a:hover::after{width:100%;}
+
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:center;padding:0 8%;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(202,162,87,0.18), transparent 50%),
+    radial-gradient(circle at 10% 80%, rgba(201,120,106,0.15), transparent 55%),
+    var(--cream);
+}
+.hero-content{max-width:560px;z-index:2;}
+.eyebrow{font-family:Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--gold);}
+.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.05;color:var(--rose-deep);font-weight:normal;margin-bottom:20px;}
+.hero h1 em{font-style:italic;color:var(--cocoa);}
+.hero p{font-family:Arial,sans-serif;font-size:16px;line-height:1.7;color:#5c4843;margin-bottom:32px;max-width:460px;}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+.btn{font-family:Arial,sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:16px 30px;border-radius:2px;display:inline-flex;align-items:center;gap:10px;transition:transform .25s ease, box-shadow .25s ease;}
+.btn-primary{background:var(--rose-deep);color:var(--white);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(168,83,74,0.35);}
+.btn-outline{border:1px solid var(--cocoa);color:var(--cocoa);}
+.btn-outline:hover{background:var(--cocoa);color:var(--white);transform:translateY(-3px);}
+
+.hero-orb-wrap{position:absolute;right:6%;top:50%;width:380px;height:380px;display:flex;align-items:center;justify-content:center;animation:floaty 6s ease-in-out infinite;}
+.hero-ring{position:absolute;border:1px solid rgba(168,83,74,0.25);border-radius:50%;}
+.hero-ring.r1{width:100%;height:100%;animation:spinSlow 40s linear infinite;}
+.hero-ring.r2{width:118%;height:118%;border-style:dashed;border-color:rgba(202,162,87,0.4);animation:spinSlow 60s linear infinite reverse;}
+.hero-orb{position:relative;width:340px;height:340px;border-radius:50%;background:linear-gradient(160deg,var(--blush),var(--gold) 120%);opacity:0.92;display:flex;align-items:center;justify-content:center;box-shadow:0 30px 70px rgba(168,83,74,0.3), inset 0 0 40px rgba(255,255,255,0.3);}
+.hero-orb-inner{width:86%;height:86%;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 4px 18px rgba(168,83,74,0.12);}
+.hero-orb-inner img{width:78%;height:78%;object-fit:contain;}
+.sparkle{position:absolute;color:var(--gold);font-size:18px;opacity:.8;}
+.sparkle.s1{top:6%;left:10%;animation:floaty 4s ease-in-out infinite;}
+.sparkle.s2{bottom:10%;right:4%;animation:floaty 5s ease-in-out infinite reverse;}
+@media(max-width:880px){.hero-orb-wrap{display:none;}}
+
+.section{padding:90px 8%;}
+.section-head{text-align:center;max-width:620px;margin:0 auto 56px;}
+.section-head .eyebrow{justify-content:center;}
+.section-head .eyebrow::before{display:none;}
+.section-head h2{font-size:clamp(30px,4vw,42px);color:var(--rose-deep);font-weight:normal;}
+.section-head p{font-family:Arial,sans-serif;color:#6b5750;margin-top:14px;line-height:1.7;}
+
+.products{background:var(--white);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.card{background:var(--cream);border:1px solid var(--blush);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s ease, box-shadow .35s ease;position:relative;}
+.card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 22px 45px rgba(168,83,74,0.18);}
+.card-img{height:190px;background:linear-gradient(135deg,var(--blush),var(--gold));display:flex;align-items:center;justify-content:center;color:var(--white);font-family:Arial,sans-serif;font-size:34px;position:relative;overflow:hidden;}
+.card-img::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-20deg);transition:left .7s ease;}
+.card:hover .card-img::after{left:120%;}
+.card-body{padding:22px;flex:1;display:flex;flex-direction:column;}
+.card-body h3{color:var(--cocoa);font-size:19px;margin-bottom:8px;}
+.card-body p{font-family:Arial,sans-serif;font-size:14px;color:#74605a;line-height:1.6;flex:1;margin-bottom:18px;}
+.card-foot{display:flex;align-items:center;justify-content:space-between;}
+.price{font-weight:bold;color:var(--rose-deep);font-family:Arial,sans-serif;}
+.order-btn{font-family:Arial,sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;background:var(--gold);color:var(--white);padding:9px 16px;border-radius:30px;transition:background .25s ease;display:inline-flex;align-items:center;gap:6px;}
+.order-btn:hover{background:var(--rose-deep);}
+.cat-tag{position:absolute;top:14px;left:14px;background:var(--white);color:var(--rose-deep);font-family:Arial,sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;}
+
+.about{background:linear-gradient(180deg,var(--white),var(--cream));}
+.about-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto;}
+.owner-frame{width:100%;aspect-ratio:1/1.1;border-radius:10px;background:linear-gradient(160deg,var(--blush),var(--gold));display:flex;align-items:center;justify-content:center;border:6px solid var(--white);box-shadow:0 25px 50px rgba(168,83,74,0.2);overflow:hidden;padding:10px;}
+.owner-frame img{width:100%;height:100%;object-fit:cover;border-radius:6px;}
+.about-text h2{font-size:32px;color:var(--rose-deep);font-weight:normal;margin-bottom:18px;}
+.about-text p{font-family:Arial,sans-serif;color:#5c4843;line-height:1.8;margin-bottom:16px;}
+.about-text .signature{font-style:italic;color:var(--rose-deep);font-size:20px;margin-top:10px;}
+@media(max-width:800px){.about-wrap{grid-template-columns:1fr;}}
+
+.why{background:var(--cocoa);color:var(--cream);}
+.why .section-head h2{color:var(--gold);}
+.why .section-head p{color:#d8c6bf;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px;max-width:1100px;margin:0 auto;}
+.why-item{text-align:center;padding:20px;}
+.why-icon{width:60px;height:60px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--gold);font-size:22px;}
+.why-item h3{font-size:17px;margin-bottom:10px;color:var(--cream);font-weight:normal;}
+.why-item p{font-family:Arial,sans-serif;font-size:13px;color:#cdbab3;line-height:1.6;}
+
+.visit{background:var(--blush);}
+.visit-wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.visit-card{background:var(--white);padding:36px;border-radius:8px;box-shadow:0 20px 40px rgba(168,83,74,0.12);}
+.visit-card h3{color:var(--rose-deep);font-size:22px;margin-bottom:18px;}
+.visit-row{display:flex;gap:12px;margin-bottom:16px;font-family:Arial,sans-serif;font-size:14px;color:#5c4843;align-items:flex-start;}
+.visit-row b{color:var(--cocoa);display:block;font-family:Georgia,serif;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;}
+@media(max-width:760px){.visit-wrap{grid-template-columns:1fr;}}
+.map-decor{height:100%;min-height:260px;border-radius:8px;background:repeating-linear-gradient(45deg,var(--white) 0 12px, var(--blush) 12px 24px);display:flex;align-items:center;justify-content:center;color:var(--rose-deep);font-family:Arial,sans-serif;font-size:13px;text-align:center;border:1px dashed var(--rose-deep);padding:20px;}
+
+footer{background:var(--cocoa);color:var(--cream);padding:70px 8% 30px;}
+.footer-wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;max-width:1100px;margin:0 auto 50px;}
+.footer-brand .brand{color:var(--gold);font-size:24px;margin-bottom:14px;}
+.footer-brand p{font-family:Arial,sans-serif;font-size:14px;color:#cdbab3;line-height:1.7;max-width:300px;}
+footer h4{font-size:15px;color:var(--gold);margin-bottom:18px;letter-spacing:1px;text-transform:uppercase;font-family:Arial,sans-serif;font-weight:normal;}
+footer ul{list-style:none;font-family:Arial,sans-serif;font-size:14px;}
+footer li{margin-bottom:12px;color:#d8c6bf;}
+footer a:hover{color:var(--gold);}
+.social-row{display:flex;gap:14px;margin-top:6px;}
+.social-pill{border:1px solid var(--gold);color:var(--gold);padding:9px 16px;border-radius:30px;font-size:13px;font-family:Arial,sans-serif;display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;}
+.social-pill:hover{background:var(--gold);color:var(--cocoa);}
+.bottom-line{border-top:1px solid #5a4742;padding-top:22px;text-align:center;font-family:Arial,sans-serif;font-size:12.5px;color:#b89e95;}
+
+.float-wa{position:fixed;bottom:26px;right:26px;z-index:200;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,0.25);font-size:28px;animation:pulse 2.4s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+@media(max-width:760px){.nav-links{display:none;}.section{padding:70px 6%;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="logo-circle"><img src="logo.jpeg" alt="SKIN EDIT logo"></div>
+    SKIN EDIT
+  </div>
+  <div class="nav-links">
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#visit">Visit Us</a>
+    <a href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20would%20like%20to%20place%20an%20order" target="_blank">Order Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content reveal">
+    <div class="eyebrow">Jinja, Uganda · Skin &amp; Hair Care</div>
+    <h1>Your skin, <br><em>edited</em> to glow.</h1>
+    <p>SKIN EDIT brings you trusted skin oils, vaselines, perfumes and hair care — sourced with care and delivered with love, right from Bayeco Arcade, Jinja Kampala Road.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20would%20like%20to%20place%20an%20order" target="_blank">Order on WhatsApp</a>
+      <a class="btn btn-outline" href="#shop">Browse Products</a>
+    </div>
+  </div>
+  <div class="hero-orb-wrap">
+    <div class="hero-ring r1"></div>
+    <div class="hero-ring r2"></div>
+    <span class="sparkle s1">✦</span>
+    <span class="sparkle s2">✦</span>
+    <div class="hero-orb">
+      <div class="hero-orb-inner"><img src="logo.jpeg" alt="SKIN EDIT logo"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section products fade-in" id="shop">
+  <div class="section-head">
+    <div class="eyebrow">Our Collection</div>
+    <h2>Skin, Hair &amp; Fragrance</h2>
+    <p>Every item below can be ordered directly through WhatsApp — just tap "Order on WhatsApp" and we'll confirm availability, price and delivery.</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Skin Oils</span>🌿</div>
+      <div class="card-body">
+        <h3>Glow Body Oil</h3>
+        <p>Nourishing body oil blend that softens skin and locks in moisture for a healthy natural glow.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20order%20the%20Glow%20Body%20Oil" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Vaselines</span>🧴</div>
+      <div class="card-body">
+        <h3>Petroleum Jelly (Vaseline)</h3>
+        <p>Pure, gentle petroleum jelly for everyday skin protection and deep moisture, for the whole family.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20order%20Vaseline" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Skin Care</span>✨</div>
+      <div class="card-body">
+        <h3>Brightening Face Cream</h3>
+        <p>A gentle, even-tone face cream made for daily use — leaves skin smooth, soft and radiant.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20order%20the%20Brightening%20Face%20Cream" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Perfumes</span>💐</div>
+      <div class="card-body">
+        <h3>Signature Perfume</h3>
+        <p>Long-lasting, elegant fragrance designed to keep you smelling fresh from morning to night.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20order%20a%20Signature%20Perfume" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Hair Care</span>💇🏽‍♀️</div>
+      <div class="card-body">
+        <h3>Hair Growth Oil</h3>
+        <p>Strengthening hair oil that nourishes the scalp and supports healthier, longer-looking hair.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20order%20the%20Hair%20Growth%20Oil" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img"><span class="cat-tag">Hair Care</span>🎀</div>
+      <div class="card-body">
+        <h3>Hair Extensions &amp; Wigs</h3>
+        <p>Quality hair pieces and extensions to complete your look — ask us about current styles in stock.</p>
+        <div class="card-foot">
+          <span class="price">Message for price</span>
+          <a class="order-btn" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20want%20to%20ask%20about%20Hair%20Extensions" target="_blank">Order →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section about fade-in" id="about">
+  <div class="about-wrap">
+    <div class="owner-frame"><img src="oo.jpeg" alt="Mukamweezi Winnie, Founder of SKIN EDIT"></div>
+    <div class="about-text">
+      <div class="eyebrow">Meet the Founder</div>
+      <h2>Mukamweezi Winnie</h2>
+      <p>Welcome to SKIN EDIT — a skin, hair and fragrance brand built from Jinja with a simple promise: products that genuinely work, sold with honesty and warmth.</p>
+      <p>From skin oils and vaselines to face creams, perfumes and hair care, every product is picked with our customers' skin and confidence in mind.</p>
+      <p class="signature">— Winnie, Founder of SKIN EDIT</p>
+    </div>
+  </div>
+</section>
+
+<section class="section why fade-in">
+  <div class="section-head">
+    <div class="eyebrow">Why Shop With Us</div>
+    <h2>Care You Can Trust</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">✓</div>
+      <h3>Genuine Products</h3>
+      <p>We stock trusted skin, hair and fragrance products — no shortcuts, no fakes.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💬</div>
+      <h3>Easy WhatsApp Ordering</h3>
+      <p>Order directly on WhatsApp and chat with us about any product, anytime.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📍</div>
+      <h3>Visit Us in Jinja</h3>
+      <p>Find us at Bayeco Arcade, Jinja Kampala Road — come see and feel the products.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🚚</div>
+      <h3>Delivery Available</h3>
+      <p>Message us your location and we'll arrange delivery wherever you are.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section visit fade-in" id="visit">
+  <div class="visit-wrap">
+    <div class="visit-card">
+      <h3>Visit Our Shop</h3>
+      <div class="visit-row"><span class="dot"></span><div><b>Location</b>Bayeco Arcade, Jinja Kampala Road, Jinja, Uganda</div></div>
+      <div class="visit-row"><span class="dot"></span><div><b>WhatsApp / Calls</b>+256 787 519 733</div></div>
+      <div class="visit-row"><span class="dot"></span><div><b>Email</b>mukamweeziw3@gmail.com</div></div>
+      <div class="visit-row"><span class="dot"></span><div><b>TikTok</b>@winnies.skin.edit</div></div>
+      <a class="btn btn-primary" style="margin-top:10px;display:inline-flex" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20would%20like%20to%20place%20an%20order" target="_blank">Chat on WhatsApp</a>
+    </div>
+    <div class="map-decor">📍 Bayeco Arcade<br>Jinja Kampala Road<br>Jinja, Uganda</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <div class="brand">SKIN EDIT</div>
+      <p>Skin oils, vaselines, face creams, perfumes and hair care — proudly based in Jinja, Uganda. Every order is welcomed and handled with care.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#shop">Shop Products</a></li>
+        <li><a href="#about">About Winnie</a></li>
+        <li><a href="#visit">Visit Our Shop</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get In Touch</h4>
+      <ul>
+        <li>+256 787 519 733</li>
+        <li>mukamweeziw3@gmail.com</li>
+        <li>Bayeco Arcade, Jinja</li>
+      </ul>
+      <div class="social-row">
+        <a class="social-pill" href="https://wa.me/256787519733" target="_blank">WhatsApp</a>
+        <a class="social-pill" href="https://www.tiktok.com/@winnies.skin.edit" target="_blank">TikTok</a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-line">© 2026 SKIN EDIT · Founded by Mukamweezi Winnie · Jinja, Uganda</div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/256787519733?text=Hello%20SKIN%20EDIT%2C%20I%20would%20like%20to%20place%20an%20order" target="_blank" title="Chat on WhatsApp">📱</a>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var els=document.querySelectorAll('.fade-in');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in-view');obs.unobserve(e.target);}
+    });
+  },{threshold:0.15});
+  els.forEach(function(el){obs.observe(el);});
+});
+</script>
+</body>
+</html>
